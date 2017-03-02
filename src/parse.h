@@ -9,10 +9,8 @@ typedef struct argbox {
   char **words;
 } argbox;
 
-char **parse(char *raw);
+argbox *parse(char *raw);
 
 void destroy_argbox(argbox *a);
-
-argbox *create_argbox(int count);
 
 #endif

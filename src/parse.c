@@ -3,10 +3,11 @@
 /**
  * Tokenize a whitespace separated string and return resulting words as
  * an array of strings.
- * @param raw whitespace separted string to be processed
+ * @param raw whitespace-separted string to be processed (note: this is
+ * destroyed during processing)
  * @return array of strings consisting of whitespace-tokenized words
  */
-char **parse(char *raw) {
+argbox *parse(char *raw) {
 
   // input is whtie space separated
   const char *delim = " \t\n";
