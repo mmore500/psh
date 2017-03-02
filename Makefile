@@ -29,7 +29,7 @@ src: builtin.o local.o path.o qotd.o parse.o
 	gcc -Wall -o psh src/main.c *.o
 
 test: builtin.o local.o path.o qotd.o parse.o test_.o runtest.o
-	gcc -Wall -o runtest test/test.c test_*.o runtest.o
+	gcc -Wall -o runtest test/test.c *.o
 	./runtest
 
 clean:
