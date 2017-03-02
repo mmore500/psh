@@ -16,10 +16,25 @@ argbox *create_argbox(int count) {
 }
 
 /**
+ * Puts an argument in the argbox
+ * @param a the argbox to set the argument in
+ * @param which the index of the argument to set
+ * @param arg the string to put in the argbox
+ * @return 0 on success, 1 on failure
+ */
+int setarg(argbox *a, int which, char *arg) {
+  if (which < 0 || which >= a->count) {
+    return 1;
+  } else {
+    *(a->words + which) = arg;
+    return 0;
+  }
+}
+
+/**
  * Tokenize a whitespace separated string and return resulting words as
  * an array of strings.
- * @param raw whitespace-separted string to be processed (note: this is
- * destroyed during processing)
+ * @param raw whitespace-separted string to be processed
  * @return array of strings consisting of whitespace-tokenized words
  */
 argbox *parse(char *raw) {
@@ -27,17 +42,32 @@ argbox *parse(char *raw) {
   // input is whtie space separated
   const char *delim = " \t\n";
 
+  char *temp = strdup(raw);
+
+  char *sptr;
+
   // count the number of words resulting from tokenization
   int count = 0;
-  char *sptr;
-  for(sptr = raw; sptr; sptr = strpbrk(sptr, delim)){
+  for(sptr = strtok(temp, delim); sptr; sptr = strtok(NULL, delim)) {
     count ++;
   }
 
-  //TODO implement
+  // make a fresh copy of the string
+  free(temp);
+  temp = strdup(raw);
 
-  return NULL;
+  // make an argbox to hold the words resulting from tokenization
+  argbox *abox = create_argbox(count);
 
+  // fill the argbox
+  int i;
+  for(sptr = strtok(temp, delim), i = 0; sptr; sptr = strtok(NULL, delim), i++) {
+    abox->words[i] = strdup(sptr);
+  }
+
+  free(temp);
+
+  return abox;
 }
 
 /**
