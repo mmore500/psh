@@ -1,6 +1,21 @@
 #include "parse.h"
 
 /**
+ * Creates an empty argbox struct that is ready to store words.
+ * @param count the number of words the argbox should store
+ * @return the newly created argbox
+ */
+argbox *create_argbox(int count) {
+  argbox *a = malloc(sizeof(argbox));
+  if(a) {
+    a->count = count;
+    a->words = malloc(sizeof(char *) * count);
+  }
+  return a;
+
+}
+
+/**
  * Tokenize a whitespace separated string and return resulting words as
  * an array of strings.
  * @param raw whitespace-separted string to be processed (note: this is
@@ -40,16 +55,15 @@ void destroy_argbox(argbox *a) {
 }
 
 /**
- * Creates an empty argbox struct that is ready to store words.
- * @param count the number of words the argbox should store
- * @return the newly created argbox
+ * Retrieves an argument word from an argbox
+ * @param a the argbox to retrieve the argument from
+ * @param which the index of the argument to retrieve
+ * @return the retrieved argument string or NULL for an invalid argument request
  */
-argbox *create_argbox(int count) {
-  argbox *a = malloc(sizeof(argbox));
-  if(a) {
-    a->count = count;
-    a->words = malloc(sizeof(char *) * count);
+char *getarg(argbox *a, int which) {
+  if (which < 0 || which >= a->count) {
+    return NULL;
+  } else {
+    return *(a->words + which);
   }
-  return a;
-
 }
