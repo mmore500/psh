@@ -12,6 +12,7 @@
 #include "test_local.h"
 #include "test_path.h"
 #include "test_qotd.h"
+#include "test_parse.h"
 /*
  * Run all registered unit tests, print results
  */
@@ -22,6 +23,7 @@ int main()
   pass &= runtests_local();
   pass &= runtests_path();
   pass &= runtests_qotd();
+  pass &= runtests_parse();
   printf("----------------------------\n");
   printf("Test battery status: %s.\n", pass ? "PASSED" : "FAILED");
 

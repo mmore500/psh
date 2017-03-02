@@ -35,16 +35,9 @@ int main(int argc, char *argv[]) {
 
     fgets(buffer, MAX_INPUT_LEN, stdin);
 
-    // input is whtie space separated
-    const char *delim = " \t\n";
-
-    char *valstr = strtok(buffer, delim);
-
     //TODO check if & is last argument
 
     //TODO look for / prepended commands
-
-    //TODO look for builtin functoins
 
     //TODO look in the user PATH
 
