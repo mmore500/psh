@@ -13,4 +13,6 @@ argbox *parse(char *raw);
 
 void destroy_argbox(argbox *a);
 
+char *getarg(argbox *a, int which);
+
 #endif
