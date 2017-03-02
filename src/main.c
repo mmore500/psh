@@ -24,7 +24,9 @@ int main(int argc, char *argv[]) {
   // welcome user to shell
   printf("Welcome to the Puget Sound Shell!\n");
 
-  //TODO print quote of the day
+  // print qotd file if it's present
+  // argument 0 makes it verbose
+  print_qotd(0);
 
   while(true) {
     // get string data from user
