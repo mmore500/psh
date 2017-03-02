@@ -3,6 +3,9 @@
 // unit test
 static bool test_print_qotd() {
   int pass = true;
+
+  pass &= (0 == print_qotd(1));
+
   return pass;
 }
 
