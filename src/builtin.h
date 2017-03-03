@@ -4,7 +4,7 @@
 #define HISTORY_LEN 100
 
 #include <stdbool.h>
-
+#include <unistd.h>
 #include "parse.h"
 
 bool handle_builtin(argbox *a, char **history, bool silent);
