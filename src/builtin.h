@@ -4,6 +4,7 @@
 #define HISTORY_LEN 100
 
 #include <stdbool.h>
+#include <stdio.h>
 #include <unistd.h>
 #include "parse.h"
 

@@ -68,6 +68,6 @@ void builtin_history(char **history, bool silent) {
   int i;
   for (i = 0; i < HISTORY_LEN; i++) {
     char *line = history[i];
-    if (!silent) printf("%s\n", line);
+    if (!silent && line[0] != '\0') printf("%s", line);
   }
 }
