@@ -19,6 +19,11 @@ int exec_path(char *path, char **args, bool wantwait, bool silent) {
     }
   }
 
+  // when using double forking, original parent needs to wait on original child
+  if (!wantwait && f) {
+    wait(NULL);
+  }
+
   // res will be set to 1 if an invalid command was used in wait mode
   int res = 0;
   if (f > 0 && wantwait){
