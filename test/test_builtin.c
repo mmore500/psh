@@ -25,13 +25,15 @@ static bool test_builtin_history() {
   int pass = true;
 
   char *entry = "entry";
-  char *history[HISTORY_LEN];
+  char *history[HISTORY_LEN + 1];
   int i;
-  for(i = 0; i < HISTORY_LEN; i ++) {
+  for(i = 0; i < HISTORY_LEN + 1; i ++) {
     history[i] = entry;
   }
 
-  builtin_history(history, true);
+  builtin_history(history, 0, true);
+  builtin_history(history, 1, true);
+  builtin_history(history, HISTORY_LEN, true);
 
   return pass;
 }
@@ -41,30 +43,32 @@ static bool test_handle_builtin() {
   int pass = true;
 
   char *entry = "entry";
-  char *history[HISTORY_LEN];
+  char *history[HISTORY_LEN + 1];
   int i;
-  for(i = 0; i < HISTORY_LEN; i ++) {
+  for(i = 0; i < HISTORY_LEN + 1; i ++) {
     history[i] = entry;
   }
 
   argbox *a = parse("pwd");
-  pass &= handle_builtin(a, history, true);
+  pass &= handle_builtin(a, history, 0, true);
   destroy_argbox(a);
 
   a = parse("cd test");
-  pass &= handle_builtin(a, history, true);
+  pass &= handle_builtin(a, history, 0, true);
   destroy_argbox(a);
 
   a = parse("cd ..");
-  pass &= handle_builtin(a, history, true);
+  pass &= handle_builtin(a, history, 0, true);
   destroy_argbox(a);
 
   a = parse("history");
-  pass &= handle_builtin(a, history, true);
+  pass &= handle_builtin(a, history, 0, true);
+  pass &= handle_builtin(a, history, 1, true);
+  pass &= handle_builtin(a, history, HISTORY_LEN, true);
   destroy_argbox(a);
 
   a = parse("ls");
-  pass &= !handle_builtin(a, history, true);
+  pass &= !handle_builtin(a, history, 0, true);
   destroy_argbox(a);
 
   return pass;
