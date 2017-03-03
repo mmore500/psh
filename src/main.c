@@ -66,7 +66,7 @@ int main(int argc, char *argv[]) {
     }
 
     // see if it can be handled as a builtin
-    if (handle_builtin(a, (char **)strarray, false)) continue;
+    if (handle_builtin(a, (char **)strarray, cur_hist, false)) continue;
 
     // path to exebutable to try
     char *res = NULL;

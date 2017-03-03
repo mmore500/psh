@@ -12,15 +12,16 @@ void builtin_exit() {
  * Takes an argbox and attempts to handle it using builtin commands.
  * @param a the argbox containing user-provided arguments
  * @param history array strings with last HISTORY_LEN commands
+ * @param cur_hist current index in the history buffer
  * @param silent if true, suppress printing to stdout
  * @return true if the argbox was handled by builtins, false otherwise
  */
-bool handle_builtin(argbox *a, char **history, bool silent) {
+bool handle_builtin(argbox *a, char **history, int cur_hist, bool silent) {
   char *commandname = *(a->words);
   if(!strcmp(commandname, "exit")) builtin_exit();
   else if(!strcmp(commandname, "pwd")) builtin_pwd(silent);
   else if(!strcmp(commandname, "cd")) builtin_cd(a->count > 1 ? *(a->words + 1) : NULL, silent);
-  else if(!strcmp(commandname, "history")) builtin_history(history, silent);
+  else if(!strcmp(commandname, "history")) builtin_history(history, cur_hist, silent);
   // if an option wasn't recognized
   else return false;
 
@@ -62,12 +63,13 @@ int builtin_cd(char *path, bool silent) {
 /*
  * Print last HISTORY_LEN user commands
  * @param history array strings with last HISTORY_LEN commands
+ * @param cur_hist current index in the history buffer
  * @param silent if true, suppress printing to stdout
  */
-void builtin_history(char **history, bool silent) {
+void builtin_history(char **history, int cur_hist, bool silent) {
   int i;
   for (i = 0; i < HISTORY_LEN; i++) {
-    char *line = history[i];
+    char *line = history[(cur_hist + 1 + i % (HISTORY_LEN+1) + HISTORY_LEN+1) % (HISTORY_LEN+1)];
     if (!silent && line[0] != '\0') printf("%s", line);
   }
 }

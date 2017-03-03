@@ -8,12 +8,12 @@
 #include <unistd.h>
 #include "parse.h"
 
-bool handle_builtin(argbox *a, char **history, bool silent);
+bool handle_builtin(argbox *a, char **history, int cur_hist, bool silent);
 
 void builtin_pwd(bool silent);
 
 int builtin_cd(char *path, bool silent);
 
-void builtin_history(char **history, bool silent);
+void builtin_history(char **history, int cur_hist, bool silent);
 
 #endif
