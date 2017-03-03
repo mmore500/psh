@@ -9,7 +9,9 @@ argbox *create_argbox(int count) {
   argbox *a = malloc(sizeof(argbox));
   if(a) {
     a->count = count;
-    a->words = malloc(sizeof(char *) * count);
+    // make an extra spot for a NULL at end of arguments
+    a->words = malloc(sizeof(char *) * (count + 1));
+    *(a->words + count) = NULL;
   }
   return a;
 
