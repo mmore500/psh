@@ -59,11 +59,13 @@ char *searchbins(char *command, char *buffer, int buffsize) {
 
   char *bins = getenv("PATH");
 
-  char *sptr;
-  for(sptr = strtok(bins, ":"); sptr; sptr = strtok(NULL, ":")) {
+  char *sptr = strdup(bins);
+  for(sptr = strtok(sptr, ":"); sptr; sptr = strtok(NULL, ":")) {
     char *res = dir_contains(command, sptr, buffer, buffsize);
     if (res) return res;
   }
-  
+
+  free(sptr);
+
   return NULL;
 }

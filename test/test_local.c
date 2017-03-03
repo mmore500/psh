@@ -22,6 +22,7 @@ static bool test_searchbins() {
   char buff[1024];
 
   pass &= (0 == strcmp("/bin/ls",searchbins("ls", buff, 1024)));
+  pass &= (0 == strcmp("/bin/echo",searchbins("echo", buff, 1024)));
   pass &= !searchbins("dsfasdfasdfasf", buff, 1024);
 
   return pass;
