@@ -63,6 +63,7 @@ int main(int argc, char *argv[]) {
       wait = false;
       // remove & from args once it is parsed
       (a->words)[a->count-1] = NULL;
+      a->count --;
     }
 
     // see if it can be handled as a builtin
