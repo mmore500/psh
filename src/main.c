@@ -44,8 +44,6 @@ int main(int argc, char *argv[]) {
 
   int cur_hist;
   for(cur_hist = 0; true; cur_hist = (cur_hist + 1) % (HISTORY_LEN+1)) {
-    // // clear input buffer
-    // fseek(stdin,0,SEEK_END);
 
     // get string data from user
     printf("psh> ");
