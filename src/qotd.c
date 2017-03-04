@@ -8,11 +8,14 @@ FILE *open_qotd() {
 
   // +1 for concatenating slash
   int nChar = strlen(hPath) + strlen(QOTD_FILENAME) + 1;
-  char *fullPath = malloc(sizeof(char) * nChar);
-  // ensure that string starts empty
-  fullPath[0] = '\0';
 
-  if(fullPath) {
+  char fullPath[MAX_QOTD_PATH_LEN];
+
+  // if the path to the qotd file will fit in the buffer
+  if(nChar < MAX_QOTD_PATH_LEN) {
+    // ensure that string starts empty
+    fullPath[0] = '\0';
+
     // concatenate the path
     strcat(fullPath, hPath);
     strcat(fullPath, "/");
@@ -20,9 +23,6 @@ FILE *open_qotd() {
 
     fp = fopen(fullPath, "r");
   }
-
-  // deallocate resources
-  free(fullPath);
 
   return fp;
 

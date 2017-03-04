@@ -6,6 +6,7 @@
 #include <string.h>
 
 #define QOTD_FILENAME ".psh_motd"
+#define MAX_QOTD_PATH_LEN 1024
 
 int print_qotd(int silent);
 
