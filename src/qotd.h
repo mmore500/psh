@@ -10,4 +10,6 @@
 
 int print_qotd(int silent);
 
+FILE *open_qotd();
+
 #endif
