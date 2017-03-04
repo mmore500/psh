@@ -8,14 +8,14 @@ static bool test_exec_path() {
 
   pid_t pid_orig = getpid();
 
-  pass &= (0 == exec_path("/usr/bin/true", &arg, true, false));
-  pass &= (0 == exec_path("/usr/bin/false", NULL, true, true));
+  pass &= (0 == exec_path("/bin/true", &arg, true, false));
+  pass &= (0 == exec_path("/bin/false", NULL, true, true));
   pass &= (1 == exec_path("asdfksadfasdfasdf", &arg, true, false));
 
   pass &= (getpid() == pid_orig);
 
-  pass &= (0 == exec_path("/usr/bin/true", &arg, true, true));
-  pass &= (0 == exec_path("/usr/bin/false", NULL, false, true));
+  pass &= (0 == exec_path("/bin/true", &arg, true, true));
+  pass &= (0 == exec_path("/bin/false", NULL, false, true));
   pass &= (0 == exec_path("asdfksadfasdfasdf", &arg, false, true));
 
   pass &= (getpid() == pid_orig);

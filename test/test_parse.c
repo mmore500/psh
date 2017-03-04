@@ -1,10 +1,11 @@
 #include "test_parse.h"
 
+#define count 4
+
 // unit test for parse function
 static bool test_parse() {
   bool pass = true;
 
-  const int count = 4;
   const char *words[count] = {"boop", "beep", "meep", "to"};
   char *rawwords = "boop beep  meep\t to";
 
